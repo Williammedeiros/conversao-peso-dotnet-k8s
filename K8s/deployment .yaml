@@ -1,0 +1,44 @@
+
+---
+# Deployment da aplicação.
+
+apiVersion:
+kind: apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image: williammedeiros007/conversao-peso:v1
+        ports:
+          - containerPort: 80
+    
+
+---
+# Deployment da aplicação.
+
+apiVersion: v1
+kind: apiVersion: v1
+kind: Service
+metadata:
+  name: app
+spec:
+  selector:
+    app: app
+  ports:
+  - port: 8080
+    targetPort: 80
+    nodePort: 30000
+  type: NodePort    
+  
+         
